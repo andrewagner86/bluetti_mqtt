@@ -17,6 +17,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+  "asyncio-mqtt",
+  "bleak",
+  "crcmod",
+]
 
 [project.urls]
 Homepage = "https://github.com/andrewagner86/bluetti_mqtt"
