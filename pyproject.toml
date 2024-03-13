@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "bluetti_mqtt2"
 version = "0.15.1"
 authors = [
+  { name="Stephen Augenstein", email="perl.programmer@gmail.com"},
   { name="André Wagner", email="python@techolutions.de" },
 ]
 description = "MQTT interface to Bluetti power stations"
