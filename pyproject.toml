@@ -7,7 +7,7 @@ where = ["src"]
 
 [project]
 name = "bluetti_mqtt2"
-version = "0.15.6"
+version = "0.15.7"
 authors = [
   { name="André Wagner", email="python@techolutions.de" },
   { name="Stephen Augenstein", email="perl.programmer@gmail.com"},
@@ -25,7 +25,6 @@ dependencies = [
   "bleak",
   "crcmod",
   "dbus-next",
-  "paho-mqtt",
 ]
 
 [project.urls]

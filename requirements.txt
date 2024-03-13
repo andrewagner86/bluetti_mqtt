@@ -2,4 +2,3 @@ aiomqtt
 bleak
 crcmod
 dbus-next
-paho-mqtt
