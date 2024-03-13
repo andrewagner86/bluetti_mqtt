@@ -1,41 +1,52 @@
-name: Build distribution
+name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
 
-on: [push, pull_request]
+on: push
 
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
+  build:
+    name: Build distribution 📦
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install pypa/build
+      run: >-
+        python3 -m
+        pip install
+        build
+        --user
+    - name: Build a binary wheel and a source tarball
+      run: python3 -m build
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
 
-      - name: Python setup
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      
-      - name: Check style
-        run: python -m pip install flake8 && flake8 bluetti_mqtt
+  publish-to-testpypi:
+    name: Publish Python 🐍 distribution 📦 to TestPyPI
+    needs:
+    - build
+    runs-on: ubuntu-latest
 
-      - name: Install build dependencies
-        run: python -m pip install build
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/bluetti_mqtt2
 
-      - name: Build distributions
-        run: python -m build
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
 
-      - name: Publish to Test PyPI
-        if: github.repository == 'warhammerkid/bluetti_mqtt'
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          skip_existing: true
-          repository_url: https://test.pypi.org/legacy/
-
-      - name: Publish tagged to PyPI
-        if: github.repository == 'warhammerkid/bluetti_mqtt' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/

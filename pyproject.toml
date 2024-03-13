@@ -1,3 +1,27 @@
 [build-system]
-requires = ['setuptools>=40.8.0', 'wheel']
-build-backend = 'setuptools.build_meta:__legacy__'
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bluetti_mqtt2"
+version = "0.15.1"
+authors = [
+  { name="André Wagner", email="python@techolutions.de" },
+]
+description = "MQTT interface to Bluetti power stations"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/andrewagner86/bluetti_mqtt"
+Issues = "https://github.com/andrewagner86/bluetti_mqtt/issues"
+
+[project.scripts]
+bluetti-discovery = "bluetti_mqtt.discovery_cli:main"
+bluetti-logger = "bluetti_mqtt.logger_cli:main"
+bluetti-mqtt = "bluetti_mqtt.server_cli:main"
