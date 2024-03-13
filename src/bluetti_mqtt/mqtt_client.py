@@ -535,10 +535,11 @@ class MQTTClient:
         await self.message_queue.put(msg)
 
     async def _handle_commands(self, client: Client):
-        async with client.filtered_messages('bluetti/command/#') as messages:
-            await client.subscribe('bluetti/command/#')
-            async for mqtt_message in messages:
-                await self._handle_command(mqtt_message)
+        async with client.messages() as messages:
+            if message.topic.matches('bluetti/command/#'):
+                await client.subscribe('bluetti/command/#')
+                async for mqtt_message in messages:
+                    await self._handle_command(mqtt_message)
 
     async def _handle_messages(self, client: Client):
         while True:
