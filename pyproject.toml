@@ -2,9 +2,12 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [project]
 name = "bluetti_mqtt2"
-version = "0.15.3"
+version = "0.15.4"
 authors = [
   { name="Stephen Augenstein", email="perl.programmer@gmail.com"},
   { name="André Wagner", email="python@techolutions.de" },
@@ -18,7 +21,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "asyncio-mqtt",
+  "aiomqtt",
   "bleak",
   "crcmod",
 ]
