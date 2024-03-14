@@ -1,4 +1,0 @@
-aiomqtt
-bleak
-crcmod
-dbus-next
