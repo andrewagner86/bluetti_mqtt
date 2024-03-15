@@ -1,6 +1,8 @@
 bluetti_mqtt2
 =============
 
+This is a fork from the original warhammerkid repository. Since it looks like he will no longer continue working on this project, I have started working on a version 2. If anyone is interested in participating in the development, pull requests are welcome.
+
 This tool provides an MQTT interface to Bluetti power stations. State will be
 published to the ``bluetti/state/[DEVICE NAME]/[PROPERTY]`` topic, and commands
 can be sent to the ``bluetti/command/[DEVICE NAME]/[PROPERTY]`` topic.
