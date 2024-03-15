@@ -1,5 +1,5 @@
-bluetti_mqtt
-============
+bluetti_mqtt2
+=============
 
 This tool provides an MQTT interface to Bluetti power stations. State will be
 published to the ``bluetti/state/[DEVICE NAME]/[PROPERTY]`` topic, and commands
