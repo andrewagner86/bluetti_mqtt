@@ -7,7 +7,7 @@ where = ["src"]
 
 [project]
 name = "bluetti_mqtt2"
-version = "0.15.8"
+version = "0.15.9"
 authors = [
   { name="André Wagner", email="python@techolutions.de" },
   { name="Stephen Augenstein", email="perl.programmer@gmail.com"},
