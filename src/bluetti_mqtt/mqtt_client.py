@@ -89,12 +89,12 @@ NORMAL_DEVICE_FIELDS = {
             'state_class': 'total_increasing',
         }
     ),
-    'total_battery_percent': MqttFieldConfig(
+    'total_battery_soc': MqttFieldConfig(
         type=MqttFieldType.NUMERIC,
         setter=False,
         advanced=False,
         home_assistant_extra={
-            'name': 'Total Battery Percent',
+            'name': 'Total Battery SoC',
             'unit_of_measurement': '%',
             'device_class': 'battery',
             'state_class': 'measurement',
@@ -535,11 +535,9 @@ class MQTTClient:
         await self.message_queue.put(msg)
 
     async def _handle_commands(self, client: Client):
-        async with client.messages() as messages:
-            if message.topic.matches('bluetti/command/#'):
-                await client.subscribe('bluetti/command/#')
-                async for mqtt_message in messages:
-                    await self._handle_command(mqtt_message)
+        await client.subscribe('bluetti/command/#')
+        async for mqtt_message in client.messages:
+            await self._handle_command(mqtt_message)
 
     async def _handle_messages(self, client: Client):
         while True:
@@ -633,7 +631,7 @@ class MQTTClient:
 
     async def _handle_command(self, mqtt_message: MQTTMessage):
         # Parse the mqtt_message.topic
-        m = COMMAND_TOPIC_RE.match(mqtt_message.topic)
+        m = COMMAND_TOPIC_RE.match(str(mqtt_message.topic))
         if not m:
             logging.warn(f'unknown command topic: {mqtt_message.topic}')
             return
