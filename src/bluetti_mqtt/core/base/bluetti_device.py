@@ -1,6 +1,6 @@
 from typing import Any, List
-from ..commands import ReadHoldingRegisters, WriteSingleRegister
-from .struct import BoolField, DeviceStruct, EnumField
+from ..utils.commands import ReadHoldingRegisters, WriteSingleRegister
+from ..utils.struct import BoolField, DeviceStruct, EnumField
 
 
 class BluettiDevice:

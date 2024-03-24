@@ -3,13 +3,13 @@ import re
 from typing import Set
 from bleak import BleakScanner
 from bleak.backends.device import BLEDevice
-from bluetti_mqtt.core import BluettiDevice, AC200M, AC300, AC500, AC60, EP500, EP500P, EP600, PBOX, EB3A
+from bluetti_mqtt.core import BluettiDevice, AC200M, AC300, AC500, AC60, EP500, EP500P, EP600, EB3A, PBOX
 from .client import BluetoothClient
 from .exc import BadConnectionError, ModbusError, ParseError
 from .manager import MultiDeviceManager
 
 
-DEVICE_NAME_RE = re.compile(r'^(AC200M|AC300|AC500|AC60|EP500P|EP500|EP600|PBOX|EB3A)(\d+)$')
+DEVICE_NAME_RE = re.compile(r'^(AC200M|AC300|AC500|AC60|EP500P|EP500|EP600|EB3A|PBOX)(\d+)$')
 
 
 async def scan_devices():
@@ -25,24 +25,30 @@ async def scan_devices():
 
 def build_device(address: str, name: str):
     match = DEVICE_NAME_RE.match(name)
-    if match[1] == 'AC200M':
-        return AC200M(address, match[2])
-    if match[1] == 'AC300':
-        return AC300(address, match[2])
-    if match[1] == 'AC500':
-        return AC500(address, match[2])
-    if match[1] == 'AC60':
-        return AC60(address, match[2])
-    if match[1] == 'EP500':
-        return EP500(address, match[2])
-    if match[1] == 'EP500P':
-        return EP500P(address, match[2])
-    if match[1] == 'EP600':
-        return EP600(address, match[2])
-    if match[1] == 'PBOX':
-        return PBOX(address, match[2])
-    if match[1] == 'EB3A':
-        return EB3A(address, match[2])
+    
+    device = match[1]
+    sn = match[2]
+
+    if device == 'PBOX':
+        return PBOX(address, sn)
+    
+    
+    if device == 'AC200M':
+        return AC200M(address, sn)
+    if device == 'AC300':
+        return AC300(address, sn)
+    if device == 'AC500':
+        return AC500(address, sn)
+    if device == 'AC60':
+        return AC60(address, sn)
+    if device == 'EP500':
+        return EP500(address, sn)
+    if device == 'EP500P':
+        return EP500P(address, sn)
+    if device == 'EP600':
+        return EP600(address, sn)
+    if device == 'EB3A':
+        return EB3A(address, sn)
 
 
 async def check_addresses(addresses: Set[str]):

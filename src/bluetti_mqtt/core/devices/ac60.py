@@ -1,7 +1,7 @@
 from typing import List
 from ..commands import ReadHoldingRegisters
-from .bluetti_device import BluettiDevice
-from .struct import DeviceStruct
+from .base.bluetti_device import BluettiDevice
+from .base.struct import DeviceStruct
 
 
 class AC60(BluettiDevice):
