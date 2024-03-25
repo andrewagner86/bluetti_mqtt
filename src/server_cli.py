@@ -1,15 +1,13 @@
-import argparse
 import asyncio
 import logging
+import argparse
 import os
 import signal
-from typing import List
 import warnings
 import sys
-from bluetti_mqtt.bluetooth import scan_devices
-from bluetti_mqtt.bus import EventBus
-from bluetti_mqtt.device_handler import DeviceHandler
-from bluetti_mqtt.mqtt_client import MQTTClient
+from typing import List
+
+from src.bluetti_bt_api.bluetooth.handler import DeviceHandler
 
 
 class CommandLineHandler:
@@ -65,7 +63,7 @@ class CommandLineHandler:
 
         args = parser.parse_args()
         if args.scan:
-            asyncio.run(scan_devices())
+            logging.debug("scanning triggered")
         elif args.hostname and len(args.addresses) > 0:
             self.start(args)
         else:
@@ -92,32 +90,14 @@ class CommandLineHandler:
 
     async def run(self, args: argparse.Namespace):
         loop = asyncio.get_running_loop()
-        bus = EventBus()
 
         # Set up strong reference for tasks
         self.background_tasks = set()
 
-        # Start event bus
-        bus_task = loop.create_task(bus.run())
-        self.background_tasks.add(bus_task)
-        bus_task.add_done_callback(self.background_tasks.discard)
-
-        # Start MQTT client
-        mqtt_client = MQTTClient(
-            bus=bus,
-            hostname=args.hostname,
-            home_assistant_mode=args.ha_config,
-            port=args.port,
-            username=args.username,
-            password=args.password,
-        )
-        mqtt_task = loop.create_task(mqtt_client.run())
-        self.background_tasks.add(mqtt_task)
-        mqtt_task.add_done_callback(self.background_tasks.discard)
-
         # Start bluetooth handler (manages connections)
         addresses: List[str] = list(set(args.addresses))
-        handler = DeviceHandler(addresses, args.interval, bus)
+        handler = DeviceHandler(addresses, args.interval)
+
         bluetooth_task = loop.create_task(handler.run())
         self.background_tasks.add(bluetooth_task)
         bluetooth_task.add_done_callback(self.background_tasks.discard)

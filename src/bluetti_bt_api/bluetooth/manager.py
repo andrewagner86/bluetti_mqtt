@@ -1,12 +1,13 @@
 import asyncio
 import logging
+
 from typing import Dict, List
-from bleak import BleakScanner
-from bluetti_mqtt.core import DeviceCommand
+
 from .client import BluetoothClient
+from ..utils.commands import DeviceCommand
 
 
-class MultiDeviceManager:
+class DeviceManager:
     clients: Dict[str, BluetoothClient]
 
     def __init__(self, addresses: List[str]):
@@ -15,9 +16,6 @@ class MultiDeviceManager:
 
     async def run(self):
         logging.info(f'Connecting to clients: {self.addresses}')
-
-        # Perform a blocking scan just to speed up initial connect
-        await BleakScanner.discover()
 
         # Start client loops
         self.clients = {a: BluetoothClient(a) for a in self.addresses}

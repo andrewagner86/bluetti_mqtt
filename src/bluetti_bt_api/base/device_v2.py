@@ -1,10 +1,10 @@
 from typing import List
 from ..utils.commands import ReadHoldingRegisters
-from .bluetti_device import BluettiDevice
+from .device import BluettiDevice
 from ..utils.struct import DeviceStruct
 
 
-class BaseV2(BluettiDevice):
+class BluettiDeviceV2(BluettiDevice):
     def __init__(self, address: str, type: str, sn: str):
         self.struct = DeviceStruct()
 
