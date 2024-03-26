@@ -160,9 +160,9 @@ These devices currently use the V2 Protocol:
 
 ### time_schedule_mode
 
-1 - charge
-2 - discharge
-3 - unset
+- 1 - charge
+- 2 - discharge
+- 3 - unset
 
 ### time_schedule_time
 
