@@ -8,13 +8,6 @@ class PBOX(BluettiDevice):
     def __init__(self, address: str, sn: str):
         self.struct = DeviceStruct()
 
-        self.struct.add_utint_field('datetime_year', 2001, 0)
-        self.struct.add_utint_field('datetime_month', 2001, 1)
-        self.struct.add_utint_field('datetime_day', 2002, 0)
-        self.struct.add_utint_field('datetime_hour', 2002, 1)
-        self.struct.add_utint_field('datetime_minute', 2003, 0)
-        self.struct.add_utint_field('datetime_second', 2003, 1)
-
         self.struct.add_uint_field('uint-field-100', 100) # 6003
         self.struct.add_uint_field('uint-field-101', 101) # 6004
         self.struct.add_uint_field('uint-field-103', 103) # 6009

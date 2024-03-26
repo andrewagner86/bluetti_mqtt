@@ -15,7 +15,7 @@ These devices currently use the V2 Protocol:
 | ------- | ------ | ------- | --- | ------- | ---------------------------- | ------ | ------- |
 | 102     | 1      | uint    |     | 0/100   | total_battery_soc            | y      | y       |
 | 110     | 6      | string  |     |         | device_type                  | y      | y       |
-| 116     | 4      | int     |     |         | device_serial_number         | y      | y       |
+| 116     | 4      | int     |     |         | device_sn                    | y      | y       |
 | 142     | 1      | int     |     |         | output_power                 | ?      | y       |
 | 144     | 1      | int     |     |         | input_power                  | ?      | y       |
 | 146     | 1      | int     |     |         | grid_power                   | ?      | y       |
@@ -25,7 +25,7 @@ These devices currently use the V2 Protocol:
 | 156     | 1      | decimal | 1   |         | total_grid_consumption       | ?      | y       |
 | 158     | 1      | decimal | 1   |         | total_grid_feed              | ?      | y       |
 | 1101    | 6      | string  |     |         | device_type                  | y      | y       |
-| 1107    | 4      | int     |     |         | device_serial_number         | y      | y       |
+| 1107    | 4      | int     |     |         | device_sn                    | y      | y       |
 | 1114    | 2      | int     |     |         | system_arm_version           | ?      | y       |
 | 1117    | 2      | int     |     |         | system_dsp_version           | ?      | y       |
 | 1212    | 1      | int     |     |         | dc_input1_power              | ?      | y       |
@@ -131,7 +131,7 @@ These devices currently use the V2 Protocol:
 | Address | Length | Type    | Name                                 | [AC60] | [EP600] |
 | ------- | ------ | ------- | ------------------------------------ | ------ | ------- |
 | 6101    | 6      | string  | battery1_type                        | y      | y       |
-| 6107    | 4      | int     | battery1_serial_number               | y      | y       |
+| 6107    | 4      | int     | battery1_sn                          | y      | y       |
 | 6175    | 2      | int     | battery1_bcu_version                 | y      | y       |
 | 6178    | 2      | int     | battery1_bmu_version                 | ?      | y       |
 | 6181    | 2      | int     | battery1_safety_module_version       | ?      | y       |
@@ -186,7 +186,7 @@ These devices currently use the V2 Protocol:
 | 2226    | 1      | bool    |     |         | restore_system_switch        | ?      | y       |
 | 7002    | 1      | bool    |     |         | battery_heater               | ?      | y       |
 
-## data fields
+## enums
 
 ### time_schedule_mode
 
