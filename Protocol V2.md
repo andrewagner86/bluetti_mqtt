@@ -72,8 +72,29 @@ These devices currently use the V2 Protocol:
 | 1524    | 1      | int     |       |         | ?_phase3_power               | ?      | y       |
 | 1525    | 1      | decimal | 1     |         | ?_phase3_voltage             | ?      | y       |
 | 1526    | 1      | decimal | 1     |         | ?_phase3_current             | ?      | y       |
+| 2011    | 1      | bool    |       |         | main_switch                  | ?      | y       |
 | 2022    | 1      | uint    |       | 0/100   | min_battery_soc              | ?      | y       |
 | 2023    | 1      | uint    |       | 0/100   | max_battery_soc              | ?      | y       |
+| 2029    | 1      | bool    |       |         | time_control_switch          | ?      | y       |
+| 2030    | 1      | enum    |       | 1/3     | time_schedule1_mode          | ?      | y       |
+| 2031    | 1      | uint    |       |         | time_schedule1_start_time    | ?      | y       |
+| 2032    | 1      | uint    |       |         | time_schedule1_end_time      | ?      | y       |
+| 2033    | 1      | enum    |       | 1/3     | time_schedule2_mode          | ?      | y       |
+| 2034    | 1      | uint    |       |         | time_schedule2_start_time    | ?      | y       |
+| 2035    | 1      | uint    |       |         | time_schedule2_end_time      | ?      | y       |
+| 2036    | 1      | enum    |       | 1/3     | time_schedule3_mode          | ?      | y       |
+| 2037    | 1      | uint    |       |         | time_schedule3_start_time    | ?      | y       |
+| 2038    | 1      | uint    |       |         | time_schedule3_end_time      | ?      | y       |
+| 2039    | 1      | enum    |       | 1/3     | time_schedule4_mode          | ?      | y       |
+| 2040    | 1      | uint    |       |         | time_schedule4_start_time    | ?      | y       |
+| 2041    | 1      | uint    |       |         | time_schedule4_end_time      | ?      | y       |
+| 2042    | 1      | enum    |       | 1/3     | time_schedule5_mode          | ?      | y       |
+| 2043    | 1      | uint    |       |         | time_schedule5_start_time    | ?      | y       |
+| 2044    | 1      | uint    |       |         | time_schedule5_end_time      | ?      | y       |
+| 2045    | 1      | enum    |       | 1/3     | time_schedule6_mode          | ?      | y       |
+| 2046    | 1      | uint    |       |         | time_schedule6_start_time    | ?      | y       |
+| 2047    | 1      | uint    |       |         | time_schedule6_end_time      | ?      | y       |
+| 2066    | 1      | bool    |       |         | buzzer_switch                | ?      | y       |
 | 2207    | 1      | bool    |       |         | charge_from_grid             | ?      | y       |
 | 2208    | 1      | bool    |       |         | feed_to_grid                 | ?      | y       |
 | 2213    | 1      | uint    |       | 0/15000 | max_input_power_per_phase    | ?      | y       |
@@ -82,6 +103,7 @@ These devices currently use the V2 Protocol:
 | 2216    | 1      | uint    |       | 0/65    | max_output_current_per_phase | ?      | y       |
 | 2225    | 1      | bool    |       |         | grid_self_adjustment         | ?      | y       |
 | 2226    | 1      | bool    |       |         | restore_system_switch        | ?      | y       |
+| 7002    | 1      | bool    |       |         | battery_heater               | ?      | y       |
 | 11014   | 2      | int     |       |         | iot_version                  | ?      | y       |
 | 12002   | 16     | string  |       |         | wifi_name                    | ?      | y       |
 | 12018   | 48     | string  |       |         | wifi_password                | ?      | y       |
@@ -101,8 +123,29 @@ These devices currently use the V2 Protocol:
 
 | Address | Length | Type    | Scale | Range   | Name                         | [AC60] | [EP600] |
 | ------- | ------ | ------- | ----- | ------- | ---------------------------- | ------ | ------- |
+| 2011    | 1      | bool    |       |         | main_switch                  | ?      | y       |
 | 2022    | 1      | uint    |       | 0/100   | min_battery_soc              | ?      | y       |
 | 2023    | 1      | uint    |       | 0/100   | max_battery_soc              | ?      | y       |
+| 2029    | 1      | bool    |       |         | time_control_switch          | ?      | y       |
+| 2030    | 1      | enum    |       | 1/3     | time_schedule1_mode          | ?      | y       |
+| 2031    | 1      | uint    |       |         | time_schedule1_start_time    | ?      | y       |
+| 2032    | 1      | uint    |       |         | time_schedule1_end_time      | ?      | y       |
+| 2033    | 1      | enum    |       | 1/3     | time_schedule2_mode          | ?      | y       |
+| 2034    | 1      | uint    |       |         | time_schedule2_start_time    | ?      | y       |
+| 2035    | 1      | uint    |       |         | time_schedule2_end_time      | ?      | y       |
+| 2036    | 1      | enum    |       | 1/3     | time_schedule3_mode          | ?      | y       |
+| 2037    | 1      | uint    |       |         | time_schedule3_start_time    | ?      | y       |
+| 2038    | 1      | uint    |       |         | time_schedule3_end_time      | ?      | y       |
+| 2039    | 1      | enum    |       | 1/3     | time_schedule4_mode          | ?      | y       |
+| 2040    | 1      | uint    |       |         | time_schedule4_start_time    | ?      | y       |
+| 2041    | 1      | uint    |       |         | time_schedule4_end_time      | ?      | y       |
+| 2042    | 1      | enum    |       | 1/3     | time_schedule5_mode          | ?      | y       |
+| 2043    | 1      | uint    |       |         | time_schedule5_start_time    | ?      | y       |
+| 2044    | 1      | uint    |       |         | time_schedule5_end_time      | ?      | y       |
+| 2045    | 1      | enum    |       | 1/3     | time_schedule6_mode          | ?      | y       |
+| 2046    | 1      | uint    |       |         | time_schedule6_start_time    | ?      | y       |
+| 2047    | 1      | uint    |       |         | time_schedule6_end_time      | ?      | y       |
+| 2066    | 1      | bool    |       |         | buzzer_switch                | ?      | y       |
 | 2207    | 1      | bool    |       |         | charge_from_grid             | ?      | y       |
 | 2208    | 1      | bool    |       |         | feed_to_grid                 | ?      | y       |
 | 2213    | 1      | uint    |       | 0/15000 | max_input_power_per_phase    | ?      | y       |
@@ -111,3 +154,26 @@ These devices currently use the V2 Protocol:
 | 2216    | 1      | uint    |       | 0/65    | max_output_current_per_phase | ?      | y       |
 | 2225    | 1      | bool    |       |         | grid_self_adjustment         | ?      | y       |
 | 2226    | 1      | bool    |       |         | restore_system_switch        | ?      | y       |
+| 7002    | 1      | bool    |       |         | battery_heater               | ?      | y       |
+
+## data fields
+
+### time_schedule_mode
+
+1 - charge
+2 - discharge
+3 - unset
+
+### time_schedule_time
+
+| time  | uint | hours    | minutes  |
+| ----- | ---- | -------- | -------- |
+| 00:00 | 0    | 00000000 | 00000000 |
+| 00:01 | 1    | 00000000 | 00000001 |
+| 00:30 | 30   | 00000000 | 00011110 |
+| 00:59 | 59   | 00000000 | 00111011 |
+| 01:00 | 256  | 00000001 | 00000000 |
+| 01:15 | 271  | 00000001 | 00001111 |
+| 04:00 | 1024 | 00000100 | 00000000 |
+| 15:00 | 3840 | 00001111 | 00000000 |
+| 16:00 | 4096 | 00010000 | 00000000 |
